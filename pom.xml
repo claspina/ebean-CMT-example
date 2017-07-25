@@ -28,9 +28,13 @@
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-api</artifactId>
                 </exclusion>
-                <exclusion> <!-- already included in java ee api which is on test scope -->
+                <exclusion> <!-- already included in java ee api which is on compile/provided and test scope -->
                     <groupId>javax.persistence</groupId>
                     <artifactId>persistence-api</artifactId>
+                </exclusion>
+                <exclusion> <!-- not needed ...-->
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -80,10 +84,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <repositories>
-
-    </repositories>
 
     <build>
         <finalName>demo-ebean</finalName>
