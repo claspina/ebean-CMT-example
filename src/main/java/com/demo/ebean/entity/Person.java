@@ -1,6 +1,7 @@
 package com.demo.ebean.entity;
 
 import com.demo.ebean.entity.query.QPerson;
+import io.ebean.Ebean;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,5 +15,5 @@ public class Person extends BasicEbeanEntity {
     private String lastName;
     private Integer age;
 
-    public static QPerson query() { return new QPerson(); }
+    public static QPerson query() { return new QPerson(Ebean.getDefaultServer()); }
 }

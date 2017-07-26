@@ -27,11 +27,11 @@ import javax.ws.rs.core.Response;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 @Log
 @Path("/person")
 @Stateless
-
 public class PersonBoundary {
 
     @GET
@@ -39,19 +39,6 @@ public class PersonBoundary {
     @Produces(MediaType.TEXT_PLAIN)
     @SneakyThrows
     public Response create() {
-
-        // TODO un comment this to make ebean release the connection after the JTA transaction is completed.
-        /*
-        DefaultServer ds = (DefaultServer) Ebean.getDefaultServer();
-        JtaTransaction cst = (JtaTransaction) ds.getCurrentServerTransaction();
-        TransactionSynchronizationRegistry tsr = (TransactionSynchronizationRegistry) new InitialContext().lookup("java:comp/TransactionSynchronizationRegistry");
-        tsr.registerInterposedSynchronization( new Synchronization() {
-            public void beforeCompletion() { }
-            public void afterCompletion(int status) {
-                try { cst.getInternalConnection().close(); } catch (SQLException ignore) { }
-            }
-        });
-        */
 
         log.info("Creating fake person...");
 
@@ -71,6 +58,9 @@ public class PersonBoundary {
 
         log.info("2 new Persons created...");
         log.info("Equal: " +person.equals(person2));
+
+        List<Person> list = Person.query().age.ge(25).findList();
+System.out.println(list);
 
         String resp = "Now we have " + Person.query().findCount() + " persons";
         return Response.status(200).entity(resp).build();
