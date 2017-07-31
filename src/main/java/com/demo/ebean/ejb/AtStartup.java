@@ -1,6 +1,7 @@
-package com.demo.ebean;
+package com.demo.ebean.ejb;
 
 import com.demo.ebean.entity.Person;
+import com.demo.ebean.entity.User;
 import io.ebean.Ebean;
 import io.ebean.EbeanServer;
 import io.ebean.EbeanServerFactory;
@@ -37,17 +38,30 @@ public class AtStartup {
     @Resource(mappedName = "java:jboss/datasources/ebeanDS")
     private DataSource ds;
 
+    @Inject UserTransaction ut;
+
+    @SneakyThrows
     @PostConstruct
     public void configEbeanServer() {
         // runs migration scripts
         new MigrationRunner(new MigrationConfig()).run(ds); // begin/commits transaction for the migration...
 
+        ut.begin();
         // Configures ebean server
         ServerConfig config = new ServerConfig();
         config.setDataSource(ds);
         config.addPackage(Person.class.getPackage().getName());
         config.setUseJtaTransactionManager(true); // false by default
         EbeanServerFactory.create(config);// used in multiple threads... no prob. trx are  managed in a thread local storage.
+
+        if (User.query().username.eq("asdf").findCount() == 0) {
+            User user = new User();
+            user.setPassword("asdf");
+            user.setUsername("asdf");
+            user.save();
+        }
+        ut.commit();
+
 
     }
 }

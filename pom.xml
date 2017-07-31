@@ -16,7 +16,7 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <vaadin.version>8.1.0</vaadin.version>
         <vaadin.plugin.version>8.1.0</vaadin.plugin.version>
-        <vaadin.widgetset.mode>fetch</vaadin.widgetset.mode> <!-- cdn fetch local -->
+        <vaadin.widgetset.mode>cdn</vaadin.widgetset.mode> <!-- cdn fetch local -->
     </properties>
 
     <dependencyManagement>
@@ -45,6 +45,17 @@
             <groupId>com.wcs.vaadin</groupId>
             <artifactId>vaadin-alt-cdi</artifactId>
             <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.hdavid</groupId>
+            <artifactId>easylayout</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.vaadin.teemusa</groupId>
+            <artifactId>sidemenu</artifactId>
+            <version>2.0.0</version>
         </dependency>
 
         <dependency>

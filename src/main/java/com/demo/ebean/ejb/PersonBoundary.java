@@ -1,4 +1,4 @@
-package com.demo.ebean;
+package com.demo.ebean.ejb;
 
 import com.demo.ebean.entity.Person;
 import io.ebean.Ebean;
