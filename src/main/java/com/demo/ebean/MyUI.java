@@ -29,7 +29,7 @@ import com.wcs.vaadin.cdi.server.VaadinCDIServlet;
 public class MyUI extends UI {
 
     @Inject
-    CurrentUser cu;
+    MyControlAccess cu;
     @Inject
     LoginView loginView;
     @Inject
@@ -38,7 +38,7 @@ public class MyUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
 
-        if (!cu.isLoggedIn()) {
+        if (!cu.isUserSignedIn()) {
             setContent(loginView);
         } else {
 //            mainView.init();
@@ -52,19 +52,19 @@ public class MyUI extends UI {
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
-    @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
+//    @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
     public static class MyUIServlet extends VaadinCDIServlet {
-        @Override
-        protected void servletInitialized() throws ServletException {
-            super.servletInitialized();
-            getService().setSystemMessagesProvider((SystemMessagesProvider) systemMessagesInfo -> {
-                CustomizedSystemMessages messages = new CustomizedSystemMessages();
-                // Don't show any messages, redirect immediately to the session expired URL
-                messages.setSessionExpiredNotificationEnabled(false);
-                // Don't show any message, reload the page instead
-                messages.setCommunicationErrorNotificationEnabled(true);
-                return messages;
-            });
-        }
+//        @Override
+//        protected void servletInitialized() throws ServletException {
+//            super.servletInitialized();
+//            getService().setSystemMessagesProvider((SystemMessagesProvider) systemMessagesInfo -> {
+//                CustomizedSystemMessages messages = new CustomizedSystemMessages();
+//                // Don't show any messages, redirect immediately to the session expired URL
+//                messages.setSessionExpiredNotificationEnabled(false);
+//                // Don't show any message, reload the page instead
+//                messages.setCommunicationErrorNotificationEnabled(true);
+//                return messages;
+//            });
+//        }
     }
 }

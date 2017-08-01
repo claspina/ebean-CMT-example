@@ -27,7 +27,7 @@ public class MainView extends SideMenu {
     CDINavigator navigator;
 
     @Inject
-    CurrentUser cu;
+    MyControlAccess cu;
 
     @PostConstruct
     public void init() {
@@ -60,7 +60,7 @@ public class MainView extends SideMenu {
         addNavigation("PersonView", PersonView.VIEWNAME);
         setResponsive(true);
 
-        Notification.show("CurrentUser is: "+ cu.isLoggedIn());
+        Notification.show("CurrentUser is: "+ cu.isUserSignedIn());
 
         navigator.navigateTo(UserView.VIEWNAME);
     }

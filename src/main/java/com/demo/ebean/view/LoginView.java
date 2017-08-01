@@ -14,7 +14,7 @@ import javax.inject.Inject;
 
 import static net.hdavid.easylayout.L.*;
 
-@CDIView
+//@CDIView
 public class LoginView extends VerticalLayout implements CustomView {
 
     @Inject
