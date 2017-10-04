@@ -2,4 +2,6 @@
 
 <jboss-web>
     <context-root>/</context-root>
+    <!--<security-domain>spnego-roles</security-domain>-->
+
 </jboss-web>

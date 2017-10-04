@@ -4,4 +4,26 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <!--<security-constraint>-->
+    <!--<web-resource-collection>-->
+      <!--<web-resource-name>sample</web-resource-name>-->
+      <!--<url-pattern>/*</url-pattern>-->
+      <!--<http-method>POST</http-method>-->
+      <!--<http-method>GET</http-method>-->
+    <!--</web-resource-collection>-->
+    <!--&lt;!&ndash;    <auth-constraint>-->
+          <!--<role-name>*</role-name>-->
+        <!--</auth-constraint>-->
+     <!--&ndash;&gt;-->
+  <!--</security-constraint>-->
+
+  <!--<login-config>-->
+    <!--<auth-method>SPNEGO</auth-method>-->
+  <!--</login-config>-->
+
+  <!--<security-role>-->
+    <!--<role-name>login</role-name>-->
+  <!--</security-role>-->
+
 </web-app>
